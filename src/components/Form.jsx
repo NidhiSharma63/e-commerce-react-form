@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import 'react-phone-number-input/style.css';
 import PhoneInput,{isValidPhoneNumber} from 'react-phone-number-input';
 import { useForm,Controller } from "react-hook-form";
@@ -6,12 +6,30 @@ import { useForm,Controller } from "react-hook-form";
 const Form = ({setIsFormSubmitted}) => {
 
   const { register, handleSubmit, formState: { errors },control,reset } = useForm();
-
+  // console.log(errors);
+  
   const onSubmit = data => {
     console.log(data);
     reset();
     setIsFormSubmitted(true);
   };
+
+  useEffect(() => {
+    console.log(errors);
+    if(errors?.merchantEmail) {
+      errors.merchantEmail.ref.parentElement.classList.add('error-border');
+    }
+    if(errors?.merchantName) {
+      errors.merchantName.ref.parentElement.classList.add('error-border');
+    }
+    if(errors?.password) {
+      errors.password.ref.parentElement.classList.add('error-border');
+    }
+    if(errors?.phoneInput) {
+      const phoneInput = document.querySelector('.phone-input');
+      phoneInput.classList.add('error-border');
+    }
+  }, [errors]);
 
   return (
     <div className="form-wrapper">
@@ -23,6 +41,7 @@ const Form = ({setIsFormSubmitted}) => {
               <input 
                 type="text"
                 placeholder="your name"
+                id="meName"
                 {...register('merchantName', {
                   required: 'required',
                   minLength: {
@@ -37,9 +56,9 @@ const Form = ({setIsFormSubmitted}) => {
             }
           </div>
           <div className="input-wrapper">
-            <div className="input">
+            <div className="input phone-input">
             <Controller
-              name="phone-input"
+              name="phoneInput"
               control={control}
               rules={{
                 validate: (value) => isValidPhoneNumber(value),
@@ -57,7 +76,7 @@ const Form = ({setIsFormSubmitted}) => {
             />
             </div>
             {
-              errors['phone-input'] && <p className='error'>Enter a valid number</p>
+              errors['phoneInput'] && <p className='error'>Enter a valid number</p>
             }
           </div>
           <div className="input-wrapper">
