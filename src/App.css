@@ -136,6 +136,8 @@ button:hover{
   margin: 2rem 0rem;
   text-align: center;
   font-size: 2.8rem;  
+  width: 41%;
+  color: green;
 }
 @media screen and (max-width:1780px) {
   html{
@@ -164,6 +166,9 @@ button:hover{
   }
   .form-wrapper{
     width: 100%;
+  }
+  .account-confirmation{
+    width: 100% !important;
   }
 }
 
