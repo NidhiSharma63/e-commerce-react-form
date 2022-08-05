@@ -1,7 +1,13 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './App.css';
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
+import { isValidPhoneNumber } from 'react-phone-number-input'
 
 const App = () => {
+
+  const [value, setValue] = useState()
+
   return (
     <div className='main-wrapper'>
         <div className="wrapper">
@@ -9,7 +15,7 @@ const App = () => {
           <form>
               <div className="input-wrapper">
                 <div className="input">
-                  <i class="fa-solid fa-user"></i>
+                  <i className="fa-solid fa-user"></i>
                   <input 
                     type="text"
                     placeholder="your name"
@@ -21,7 +27,25 @@ const App = () => {
               </div>
               <div className="input-wrapper">
                 <div className="input">
-                  <i class="fa-solid fa-envelope"></i>
+                   <PhoneInput
+                    placeholder="Enter phone number"
+                    value={value}
+                    defaultCountry="IN"
+                    international={true}
+                    error={
+                      value ? (isValidPhoneNumber(value) 
+                      ? undefined : 'Invalid phone number') 
+                      : 'Phone number required'
+                    }
+                    withCountryCallingCode={true}
+                    onChange={setValue}
+                    />
+                </div>
+                { value && isValidPhoneNumber(value) ? <p className='error'>valid</p> : <p className='error'>not valid</p>}
+              </div>
+              <div className="input-wrapper">
+                <div className="input">
+                  <i className="fa-solid fa-envelope"></i>
                   <input 
                     type="email"
                     placeholder="example@gmail.com"
@@ -33,7 +57,7 @@ const App = () => {
               </div>
               <div className="input-wrapper">
                 <div className="input">
-                  <i class="fa-solid fa-lock"></i>
+                  <i className="fa-solid fa-lock"></i>
                   <input 
                     type="password"
                     placeholder="password"
