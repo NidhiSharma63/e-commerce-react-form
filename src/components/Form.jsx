@@ -24,12 +24,12 @@ const Form = ({setIsFormSubmitted}) => {
                 type="text"
                 placeholder="your name"
                 {...register('merchantName', {
-                  required: 'Name must be at least 3 characters',
+                  required: 'required',
                   minLength: {
                     value: 3,
                     message: 'Name must be at least 3 characters'
                   }
-              })}
+                })}
               />
             </div>
             {
@@ -79,11 +79,17 @@ const Form = ({setIsFormSubmitted}) => {
               <input 
                 type="password"
                 placeholder="password"
-                {...register("password", { required: true })}                   
+                {...register('password', {
+                  required: 'required',
+                  minLength: {
+                    value: 8,
+                    message: 'password must be at least 8 characters'
+                  }
+                })}                  
                 />
             </div>
             {
-              errors.password && <p className='error'>Enter a password</p>
+              errors.password && <p className='error'>{errors.password.message}</p>
             }
           </div>
           <button type="submit">Create Account</button>
@@ -93,7 +99,3 @@ const Form = ({setIsFormSubmitted}) => {
 }
 
 export default Form;
-
-
-// {...register("merchantName", 
-//                 { required: true })
