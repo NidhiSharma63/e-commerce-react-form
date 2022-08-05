@@ -6,7 +6,6 @@ import { useForm,Controller } from "react-hook-form";
 const Form = ({setIsFormSubmitted}) => {
 
   const { register, handleSubmit, formState: { errors },control,reset } = useForm();
-  // console.log(errors);
   
   const onSubmit = data => {
     console.log(data);
