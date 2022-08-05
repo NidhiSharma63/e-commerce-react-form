@@ -99,6 +99,7 @@ input{
   font-size: 1.7rem;
   letter-spacing: 1px;
   color: #302f2f;
+  width: 100%;
 }
 input::placeholder{
   font-size: 1.5rem;
@@ -129,7 +130,6 @@ button:hover{
 .PhoneInput .PhoneInputCountry{
   font-size: 1.5rem;
 }
-
 
 .account-confirmation {
   text-align: center;
