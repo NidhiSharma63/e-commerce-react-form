@@ -1,59 +1,85 @@
 import React,{useState} from 'react';
 import './App.css';
+import { useForm } from "react-hook-form";
 import 'react-phone-number-input/style.css';
-import PhoneInput from 'react-phone-number-input';
-import { isValidPhoneNumber } from 'react-phone-number-input'
+// import PhoneInput from 'react-phone-number-input';
+import PhoneInputWithCountry from "react-phone-number-input/react-hook-form"
+// import { isValidPhoneNumber,isPossiblePhoneNumber } from 'react-phone-number-input'
 
 const App = () => {
 
-  const [value, setValue] = useState()
+  const [value, setValue] = useState();
+  // const [formData, setFormData] = useState({
+  //   name: '',
+  //   email: '',
+  //   password:'',
+  //   phone:{value}
+  // });
+  // const [phoneError, setPhoneError] = useState(false);
+
+  // const handleChange = (e) => {
+  //   setFormData({
+  //     ...formData,
+  //     [e.target.name]: e.target.value
+  //   });
+  //   console.log(formData);
+  // }
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log(value)
+  //   // if(!isValidPhoneNumber(value)){
+  //   //   setPhoneError(true);
+  //   // }
+  //   // else{
+  //   //   setPhoneError(false);
+  //   // }
+  //   // alert('Form Submitted');
+  // }
+
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const onSubmit = data => {
+    console.log(data);
+  };
 
   return (
     <div className='main-wrapper'>
         <div className="wrapper">
           <h1>Create Account</h1>
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
               <div className="input-wrapper">
                 <div className="input">
                   <i className="fa-solid fa-user"></i>
                   <input 
                     type="text"
                     placeholder="your name"
-                    name="name"
-                    required
+                    {...register("merchantName", { required: true })} 
                   />
                 </div>
-                <p className='error'>Enter your name</p>
+                {
+                  errors.merchantName && <p className='error'>Enter a your name</p>
+                }
               </div>
               <div className="input-wrapper">
                 <div className="input">
-                   <PhoneInput
-                    placeholder="Enter phone number"
-                    value={value}
-                    defaultCountry="IN"
-                    international={true}
-                    error={
-                      value ? (isValidPhoneNumber(value) 
-                      ? undefined : 'Invalid phone number') 
-                      : 'Phone number required'
-                    }
-                    withCountryCallingCode={true}
-                    onChange={setValue}
-                    />
+                   
                 </div>
-                { value && isValidPhoneNumber(value) ? <p className='error'>valid</p> : <p className='error'>not valid</p>}
+                {/* {
+                  errors.merchantPhone && <p className='error'>Enter a valid number</p>
+                } */}
               </div>
               <div className="input-wrapper">
                 <div className="input">
                   <i className="fa-solid fa-envelope"></i>
                   <input 
                     type="email"
-                    placeholder="example@gmail.com"
-                    name="email"
-                    required
+                    placeholder="example@gmail.com"              
+                    {...register("merchantEmail", { required: true })} 
                   />
                 </div>
-                <p className='error'>Enter your name</p>
+                {
+                  errors.merchantEmail && <p className='error'>Enter your email</p>
+                }
               </div>
               <div className="input-wrapper">
                 <div className="input">
@@ -61,11 +87,12 @@ const App = () => {
                   <input 
                     type="password"
                     placeholder="password"
-                    name="password"
-                    required
-                  />
+                    {...register("password", { required: true })}                   
+                    />
                 </div>
-                <p className='error'>Enter your name</p>
+                {
+                  errors.password && <p className='error'>Enter a password</p>
+                }
               </div>
               <button type="submit">Create Account</button>
           </form>
@@ -75,3 +102,25 @@ const App = () => {
 }
 
 export default App;
+
+
+
+// error={
+                    //   value ? (isValidPhoneNumber(value) 
+                    //   ? undefined : 'Invalid phone number') 
+                    //   : 'Phone number required'
+                    // }
+
+
+                    // <PhoneInputWithCountry
+                    // name="phone"
+                    // rules={{ required: true }}
+                    // control={register("phone", { required: true })} 
+                      // placeholder="Enter phone number"
+                      // defaultCountry="IN"
+                      // international={true}
+                      // withCountryCallingCode={true}
+                      // onChange={setValue}
+                      // {...register("merchantPhone", { required: true })} 
+                      // control={register}
+                    // />
