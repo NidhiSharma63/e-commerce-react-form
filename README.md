@@ -2,10 +2,11 @@
 
 ## a sign-up Form using react for e-commerce website
 
- ## [checkout here](https://nidhisharma63.github.io/react-form/) 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## technologies used
+<img width='10%' src='./src/images/readme/css.png'/>
+<img width='10%' src='./src/images/readme/react.png'/>
+
 
 ## Features
 
@@ -17,3 +18,5 @@ You may also see any lint errors in the console.
 ## here it is
 <img src='./src/images/image1.png'/>
 <img src='./src/images/image2.png'/>
+
+### [checkout here](https://nidhisharma63.github.io/react-form/) 
