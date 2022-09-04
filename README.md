@@ -4,8 +4,8 @@
 
 
 ## technologies used
-<img width='10%' src='./src/images/readme/css.png'/>
-<img width='10%' src='./src/images/readme/react.png'/>
+<img width='10%' src='./src/images/css.png'/>
+<img width='10%' src='./src/images/react.png'/>
 
 
 ## Features
